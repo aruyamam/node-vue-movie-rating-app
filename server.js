@@ -21,6 +21,14 @@ mongoose
     process.exit(1);
   });
 
+// Includeing controllers
+fs.readdirSync('controllers').forEach((file) => {
+  if (file.substr(-3) === '.js') {
+    const route = require(`./controllers/${file}`);
+    route.controller(app);
+  }
+});
+
 router.get('/', (req, res) => {
   res.json({ message: 'API Initialized!' });
 });
