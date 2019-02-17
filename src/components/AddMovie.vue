@@ -33,7 +33,7 @@ export default {
     ],
     releaseRules: [v => !!v || "Movie release year is required."],
     select: null,
-    years: ["2018", "2017", "2016", "2015"]
+    years: ["2019", "2018", "2017", "2016", "2015"]
   }),
   methods: {
     submit() {
@@ -52,10 +52,13 @@ export default {
           }
         })
           .then(() => {
+            this.$swal("Great!", "Movie added successfully!", "success");
             this.$router.push({ name: "Home" });
             this.$refs.form.reset();
           })
-          .catch(error => console.log(error));
+          .catch(() => {
+            this.$swal("Oh oo!", "Could not add the movie", "error");
+          });
       }
 
       return true;
